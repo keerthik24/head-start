@@ -7,6 +7,12 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
+# Clear npm cache
+RUN npm cache clean --force
+
+# Install necessary build dependencies
+RUN apt-get update && apt-get install -y build-essential python
+
 # Install dependencies
 RUN npm install
 
